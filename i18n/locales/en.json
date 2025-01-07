@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "services": "Services",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "title": "Building the Future of",
+    "subtitle": "Finance & Web3",
+    "description": "Expert blockchain development and fintech solutions for forward-thinking businesses.",
+    "cta": "Get Started"
+  },
+  "services": {
+    "title": "Our Services",
+    "description": "Comprehensive blockchain and fintech solutions tailored to your needs",
+    "items": {
+      "smartContracts": {
+        "title": "Smart Contracts",
+        "description": "Secure and efficient smart contract development for DeFi and Web3 applications"
+      },
+      "security": {
+        "title": "Security Audits",
+        "description": "Comprehensive security analysis and vulnerability assessment"
+      },
+      "consulting": {
+        "title": "Consulting",
+        "description": "Strategic blockchain and fintech consulting for businesses"
+      },
+      "trading": {
+        "title": "Trading Systems",
+        "description": "High-performance trading infrastructure and algorithms"
+      },
+      "defi": {
+        "title": "DeFi Solutions",
+        "description": "Custom DeFi protocol development and integration"
+      },
+      "blockchain": {
+        "title": "Blockchain",
+        "description": "Enterprise blockchain solutions and infrastructure"
+      }
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "Let's discuss how we can help transform your business",
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "service": "Select Service",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "sending": "Sending..."
+    }
+  }
+}

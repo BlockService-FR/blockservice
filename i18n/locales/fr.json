@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "services": "Services",
+    "about": "À propos",
+    "projects": "Projets",
+    "contact": "Contact",
+    "getStarted": "Commencer"
+  },
+  "hero": {
+    "title": "Construire l'Avenir de la",
+    "subtitle": "Finance & du Web3",
+    "description": "Solutions expertes en blockchain et fintech pour les entreprises innovantes.",
+    "cta": "Commencer"
+  },
+  "services": {
+    "title": "Nos Services",
+    "description": "Solutions complètes en blockchain et fintech adaptées à vos besoins",
+    "items": {
+      "smartContracts": {
+        "title": "Contrats Intelligents",
+        "description": "Développement sécurisé et efficace de contrats intelligents pour DeFi et Web3"
+      },
+      "security": {
+        "title": "Audits de Sécurité",
+        "description": "Analyse complète de sécurité et évaluation des vulnérabilités"
+      },
+      "consulting": {
+        "title": "Conseil",
+        "description": "Conseil stratégique en blockchain et fintech pour entreprises"
+      },
+      "trading": {
+        "title": "Systèmes de Trading",
+        "description": "Infrastructure et algorithmes de trading haute performance"
+      },
+      "defi": {
+        "title": "Solutions DeFi",
+        "description": "Développement et intégration de protocoles DeFi personnalisés"
+      },
+      "blockchain": {
+        "title": "Blockchain",
+        "description": "Solutions blockchain et infrastructure pour entreprises"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "description": "Discutons de la façon dont nous pouvons transformer votre entreprise",
+    "form": {
+      "name": "Votre Nom",
+      "email": "Adresse Email",
+      "service": "Sélectionnez un Service",
+      "message": "Votre Message",
+      "submit": "Envoyer",
+      "sending": "Envoi en cours..."
+    }
+  }
+}
