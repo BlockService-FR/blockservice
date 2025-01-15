@@ -11,9 +11,9 @@ export default function Home() {
     <main className="min-h-screen bg-gradient-to-b from-[#0B2447] to-[#19376D]">
       <Navbar />
       <Hero />
-      <Vision />
       <Services />
       <ProjectShowcase />
+      <Vision />
       <ContactSection />
       <Footer />
     </main>

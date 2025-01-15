@@ -3,41 +3,38 @@
 import { motion } from 'framer-motion';
 import { Code2, Shield, Brain, LineChart, Boxes, Network } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+import { useTranslation } from 'react-i18next';
 
 const services = [
   {
-    title: 'Smart Contracts',
-    description: 'Secure and efficient smart contract development for DeFi and Web3 applications',
+    key: 'smartContracts',
     icon: Code2,
   },
   {
-    title: 'Security Audits',
-    description: 'Comprehensive security analysis and vulnerability assessment',
+    key: 'security',
     icon: Shield,
   },
   {
-    title: 'Consulting',
-    description: 'Strategic blockchain and fintech consulting for businesses',
+    key: 'consulting',
     icon: Brain,
   },
   {
-    title: 'Trading Systems',
-    description: 'High-performance trading infrastructure and algorithms',
+    key: 'trading',
     icon: LineChart,
   },
   {
-    title: 'DeFi Solutions',
-    description: 'Custom DeFi protocol development and integration',
+    key: 'defi',
     icon: Boxes,
   },
   {
-    title: 'Blockchain',
-    description: 'Enterprise blockchain solutions and infrastructure',
+    key: 'blockchain',
     icon: Network,
   },
 ];
 
 export default function Services() {
+  const { t } = useTranslation();
+
   return (
     <section id="services" className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -48,14 +45,14 @@ export default function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0B2447] mb-4">Our Services</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">Comprehensive blockchain and fintech solutions tailored to your needs</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#0B2447] mb-4">{t('services.title')}</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">{t('services.description')}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
-              key={service.title}
+              key={service.key}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -63,8 +60,12 @@ export default function Services() {
             >
               <Card className="p-6 h-full hover:shadow-lg transition-shadow duration-300 border-2 hover:border-[#A5D7E8]">
                 <service.icon className="h-12 w-12 text-[#0B2447] mb-4" />
-                <h3 className="text-xl font-semibold mb-2 text-[#0B2447]">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-[#0B2447]">
+                  {t(`services.items.${service.key}.title`)}
+                </h3>
+                <p className="text-gray-600">
+                  {t(`services.items.${service.key}.description`)}
+                </p>
               </Card>
             </motion.div>
           ))}

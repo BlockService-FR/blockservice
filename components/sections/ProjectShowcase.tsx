@@ -4,33 +4,32 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
 
 const projects = [
   {
-    title: 'DeFi Trading Platform',
-    description: 'Automated market maker with advanced trading features',
+    title: 'rabbit',
     image: 'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=600',
     category: 'DeFi',
-    tech: ['Solidity', 'React', 'Web3.js'],
+    tech: ['Solidity', 'React', 'TypeScript', 'Python'],
   },
   {
-    title: 'NFT Marketplace',
-    description: 'Decentralized marketplace for digital assets',
+    title: 'cointips',
     image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600',
     category: 'Web3',
-    tech: ['Next.js', 'Ethereum', 'IPFS'],
+    tech: ['Angular', 'PostgreSQL', 'NestJS'],
   },
   {
-    title: 'Crypto Payment Gateway',
-    description: 'Enterprise-grade cryptocurrency payment solution',
+    title: 'spinh',
     image: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=600',
     category: 'Finance',
-    tech: ['Node.js', 'PostgreSQL', 'Docker'],
+    tech: ['Angular', 'Oracle', 'JavaEE'],
   },
 ];
 
 export default function ProjectShowcase() {
   const [filter, setFilter] = useState('all');
+  const { t } = useTranslation();
 
   const filteredProjects = filter === 'all' 
     ? projects 
@@ -46,8 +45,8 @@ export default function ProjectShowcase() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0B2447] mb-4">Our Projects</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto mb-8">Explore our latest blockchain and fintech solutions</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#0B2447] mb-4">{t('projects.title')}</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto mb-8">{t('projects.description')}</p>
           
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             {['all', 'defi', 'web3', 'finance'].map((category) => (
@@ -57,7 +56,7 @@ export default function ProjectShowcase() {
                 onClick={() => setFilter(category)}
                 className={filter === category ? 'bg-[#0B2447]' : ''}
               >
-                {category.toUpperCase()}
+                {t(`projects.categories.${category}`)}
               </Button>
             ))}
           </div>
@@ -77,13 +76,17 @@ export default function ProjectShowcase() {
                 <div className="relative pt-[56.25%]">
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={t(`projects.items.${project.title}.title`)}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                 </div>
                 <div className="flex flex-col flex-grow p-6">
-                  <h3 className="text-xl font-semibold text-[#0B2447] mb-2">{project.title}</h3>
-                  <p className="text-gray-600 mb-4 flex-grow">{project.description}</p>
+                  <h3 className="text-xl font-semibold text-[#0B2447] mb-2">
+                    {t(`projects.items.${project.title}.title`)}
+                  </h3>
+                  <p className="text-gray-600 mb-4 flex-grow">
+                    {t(`projects.items.${project.title}.description`)}
+                  </p>
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {project.tech.map((tech) => (
                       <span

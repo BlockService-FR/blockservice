@@ -1,7 +1,7 @@
 {
   "nav": {
     "services": "Services",
-    "about": "À propos",
+    "vision": "Notre Vision",
     "projects": "Projets",
     "contact": "Contact",
     "getStarted": "Commencer"
@@ -42,16 +42,103 @@
       }
     }
   },
+  "projects": {
+    "title": "Nos Projets",
+    "description": "Découvrez nos dernières solutions blockchain et fintech",
+    "categories": {
+      "all": "TOUT",
+      "defi": "DEFI",
+      "web3": "WEB3",
+      "finance": "FINANCE"
+    },
+    "items": {
+      "rabbit": {
+        "title": "Bot d'arbitrage DeFi",
+        "description": "Arbitrage automatique entre DEX"
+      },
+      "cointips": {
+        "title": "Plateforme de Dons Crypto",
+        "description": "Plateforme de dons décentralisée pour les créateurs de contenu"
+      },
+      "spinh": {
+        "title": "Gestion de produits structurés",
+        "description": "Solution de gestion des produits structurés pour les traders"
+      }
+    }
+  },
+  "vision": {
+    "title": "Révolutionner la Finance par la Décentralisation",
+    "description": "Nous envisageons un système financier ouvert, transparent et accessible à tous. Grâce à la technologie blockchain, nous construisons l'infrastructure pour un avenir financier plus équitable.",
+    "points": {
+      "access": {
+        "title": "Accès Universel",
+        "description": "En supprimant les barrières géographiques, la DeFi permet à 1,7 milliard de personnes non bancarisées d'accéder aux services financiers avec un simple smartphone et une connexion internet."
+      },
+      "transparency": {
+        "title": "Transparence Totale",
+        "description": "Contrairement aux opérations opaques des banques traditionnelles, les protocoles DeFi fonctionnent sur des blockchains publiques où chaque transaction est vérifiable et auditable en temps réel."
+      },
+      "efficiency": {
+        "title": "Efficacité Redéfinie",
+        "description": "Les paiements transfrontaliers traditionnels prennent 3 à 5 jours ouvrables et coûtent jusqu'à 7%. La DeFi permet des transferts instantanés à une fraction du coût."
+      },
+      "innovation": {
+        "title": "Innovation Financière",
+        "description": "Les contrats intelligents permettent la programmation de l'argent et des services financiers automatisés, des prêts flash à l'optimisation des rendements, qui n'étaient pas possibles auparavant."
+      }
+    },
+    "future": {
+      "title": "Notre Rôle dans l'Avenir de la Finance",
+      "description": "Alors que la technologie blockchain mûrit, nous sommes à l'avant-garde de la construction d'une infrastructure DeFi sécurisée et évolutive. Nos solutions comblent le fossé entre la finance traditionnelle et l'avenir décentralisé, rendant les outils financiers avancés accessibles aux entreprises et aux particuliers.",
+      "stats": {
+        "tvl": {
+          "value": "100 Mrd€+",
+          "label": "Valeur Totale Verrouillée en DeFi"
+        },
+        "costs": {
+          "value": "15x",
+          "label": "Coûts de Transaction Réduits"
+        },
+        "access": {
+          "value": "24/7",
+          "label": "Accessibilité du Marché"
+        }
+      }
+    }
+  },
   "contact": {
     "title": "Contactez-nous",
     "description": "Discutons de la façon dont nous pouvons transformer votre entreprise",
     "form": {
-      "name": "Votre Nom",
-      "email": "Adresse Email",
-      "service": "Sélectionnez un Service",
-      "message": "Votre Message",
-      "submit": "Envoyer",
-      "sending": "Envoi en cours..."
+      "name": {
+        "label": "Votre Nom",
+        "placeholder": "Entrez votre nom",
+        "error": "Le nom doit contenir au moins 2 caractères"
+      },
+      "email": {
+        "label": "Adresse Email",
+        "placeholder": "Entrez votre email",
+        "error": "Adresse email invalide"
+      },
+      "service": {
+        "label": "Sélectionnez un Service",
+        "placeholder": "Choisissez un service",
+        "options": {
+          "smartContracts": "Contrats Intelligents",
+          "defi": "Solutions DeFi",
+          "consulting": "Conseil",
+          "security": "Audit de Sécurité"
+        }
+      },
+      "message": {
+        "label": "Votre Message",
+        "placeholder": "Entrez votre message",
+        "error": "Le message doit contenir au moins 10 caractères"
+      },
+      "submit": {
+        "label": "Envoyer",
+        "sending": "Envoi en cours..."
+      }
     }
   }
 }

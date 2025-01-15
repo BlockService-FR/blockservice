@@ -2,7 +2,7 @@
 
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Languages } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function LanguageToggle() {
   const { i18n } = useTranslation();
@@ -13,29 +13,36 @@ export default function LanguageToggle() {
   };
 
   return (
-    <div className="flex items-center space-x-2">
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={() => changeLanguage('en')}
-        className={`text-gray-200 hover:text-[#A5D7E8] transition-colors duration-300 ${
-          i18n.language === 'en' ? 'text-[#A5D7E8]' : ''
-        }`}
-      >
-        EN
-      </Button>
-      <span className="text-gray-400">|</span>
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={() => changeLanguage('fr')}
-        className={`text-gray-200 hover:text-[#A5D7E8] transition-colors duration-300 ${
-          i18n.language === 'fr' ? 'text-[#A5D7E8]' : ''
-        }`}
-      >
-        FR
-      </Button>
-      <Languages className="h-4 w-4 text-gray-200" />
+    <div className="flex items-center space-x-1 bg-[#19376D]/50 rounded-full p-1">
+      {['en', 'fr'].map((lang) => (
+        <motion.div
+          key={lang}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => changeLanguage(lang)}
+            className={`
+              relative px-4 py-1.5 rounded-full transition-all duration-300
+              ${i18n.language === lang 
+                ? 'text-[#A5D7E8] bg-[#0B2447] shadow-lg' 
+                : 'text-gray-300 hover:text-[#A5D7E8]'
+              }
+            `}
+          >
+            {lang.toUpperCase()}
+            {i18n.language === lang && (
+              <motion.div
+                layoutId="activeLanguage"
+                className="absolute inset-0 bg-[#0B2447] rounded-full -z-10"
+                transition={{ type: "spring", duration: 0.5 }}
+              />
+            )}
+          </Button>
+        </motion.div>
+      ))}
     </div>
   );
 }

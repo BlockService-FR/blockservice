@@ -9,27 +9,47 @@ export default function ThreeBackground() {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Scene setup
+    // Scene setup with shared geometries and materials
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    const renderer = new THREE.WebGLRenderer({ 
+      alpha: true, 
+      antialias: true,
+      powerPreference: 'high-performance'
+    });
     
+    // Use lower pixel ratio for better performance
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     containerRef.current.appendChild(renderer.domElement);
 
-    // Create nodes (spheres)
-    const nodes: THREE.Mesh[] = [];
-    const nodeConnections: THREE.Line[] = [];
-    const nodesCount = 15;
-    const nodeGeometry = new THREE.SphereGeometry(0.5, 16, 16);
+    // Create shared geometry and materials
+    const nodeGeometry = new THREE.SphereGeometry(0.5, 12, 12); // Reduced segments
     const nodeMaterial = new THREE.MeshBasicMaterial({
       color: 0xA5D7E8,
       transparent: true,
       opacity: 0.7,
     });
 
-    // Create nodes in a distributed pattern
+    const lineMaterial = new THREE.LineBasicMaterial({
+      color: 0xA5D7E8,
+      transparent: true,
+      opacity: 0.2,
+    });
+
+    // Create nodes with optimized count
+    const nodes: THREE.Mesh[] = [];
+    const nodeConnections: THREE.Line[] = [];
+    const nodesCount = 10; // Reduced number of nodes
+
+    // Object pool for line geometries
+    const lineGeometryPool: THREE.BufferGeometry[] = [];
+    for (let i = 0; i < nodesCount * 2; i++) {
+      lineGeometryPool.push(new THREE.BufferGeometry());
+    }
+    let currentLineGeometry = 0;
+
+    // Create nodes with optimized initialization
     for (let i = 0; i < nodesCount; i++) {
       const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
       node.position.set(
@@ -39,40 +59,41 @@ export default function ThreeBackground() {
       );
       node.userData = {
         velocity: new THREE.Vector3(
-          THREE.MathUtils.randFloat(-0.02, 0.02),
           THREE.MathUtils.randFloat(-0.01, 0.01),
-          THREE.MathUtils.randFloat(-0.01, 0.01)
+          THREE.MathUtils.randFloat(-0.005, 0.005),
+          THREE.MathUtils.randFloat(-0.005, 0.005)
         )
       };
       nodes.push(node);
       scene.add(node);
     }
 
-    // Line material for connections
-    const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0xA5D7E8,
-      transparent: true,
-      opacity: 0.2,
-    });
-
-    // Function to update connections between nodes
+    // Optimized connection update function
     const updateConnections = () => {
       // Remove old connections
       nodeConnections.forEach(line => scene.remove(line));
       nodeConnections.length = 0;
+      currentLineGeometry = 0;
 
-      // Create new connections
+      // Create new connections with distance optimization
+      const positions = [];
       for (let i = 0; i < nodes.length; i++) {
+        const nodeA = nodes[i];
         for (let j = i + 1; j < nodes.length; j++) {
-          const distance = nodes[i].position.distanceTo(nodes[j].position);
-          if (distance < 15) {
-            const geometry = new THREE.BufferGeometry().setFromPoints([
-              nodes[i].position,
-              nodes[j].position
-            ]);
-            const line = new THREE.Line(geometry, lineMaterial);
-            nodeConnections.push(line);
-            scene.add(line);
+          const nodeB = nodes[j];
+          const distance = nodeA.position.distanceTo(nodeB.position);
+          
+          if (distance < 12) { // Reduced connection distance
+            positions.push(nodeA.position, nodeB.position);
+            
+            if (currentLineGeometry < lineGeometryPool.length) {
+              const geometry = lineGeometryPool[currentLineGeometry];
+              geometry.setFromPoints([nodeA.position, nodeB.position]);
+              const line = new THREE.Line(geometry, lineMaterial);
+              nodeConnections.push(line);
+              scene.add(line);
+              currentLineGeometry++;
+            }
           }
         }
       }
@@ -80,15 +101,16 @@ export default function ThreeBackground() {
 
     camera.position.z = 30;
 
-    // Animation
+    // Optimized animation loop
+    let frameCount = 0;
     const animate = () => {
       requestAnimationFrame(animate);
 
-      // Update node positions
+      // Update node positions with reduced frequency
       nodes.forEach(node => {
         node.position.add(node.userData.velocity);
 
-        // Bounce off boundaries
+        // Bounce off boundaries with simplified checks
         ['x', 'y', 'z'].forEach(axis => {
           if (Math.abs(node.position[axis]) > 20) {
             node.userData.velocity[axis] *= -1;
@@ -96,30 +118,46 @@ export default function ThreeBackground() {
         });
       });
 
-      // Update connections
-      updateConnections();
+      // Update connections less frequently
+      if (frameCount % 2 === 0) {
+        updateConnections();
+      }
 
-      // Rotate entire scene slightly
-      scene.rotation.y += 0.001;
-      scene.rotation.x += 0.0005;
+      // Rotate scene with reduced speed
+      scene.rotation.y += 0.0005;
+      scene.rotation.x += 0.0002;
 
       renderer.render(scene, camera);
+      frameCount++;
     };
 
     animate();
 
-    // Handle resize
+    // Optimized resize handler with debounce
+    let resizeTimeout: NodeJS.Timeout;
     const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }, 250);
     };
 
     window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      containerRef.current?.removeChild(renderer.domElement);
+      clearTimeout(resizeTimeout);
+      // Clean up resources
+      nodeGeometry.dispose();
+      nodeMaterial.dispose();
+      lineMaterial.dispose();
+      lineGeometryPool.forEach(geometry => geometry.dispose());
+      renderer.dispose();
+      if (containerRef.current) {
+        containerRef.current.removeChild(renderer.domElement);
+      }
     };
   }, []);
 

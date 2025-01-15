@@ -1,7 +1,7 @@
 {
   "nav": {
     "services": "Services",
-    "about": "About",
+    "vision": "Our Vision",
     "projects": "Projects",
     "contact": "Contact",
     "getStarted": "Get Started"
@@ -42,16 +42,103 @@
       }
     }
   },
+  "projects": {
+    "title": "Our Projects",
+    "description": "Explore our latest blockchain and fintech solutions",
+    "categories": {
+      "all": "ALL",
+      "defi": "DEFI",
+      "web3": "WEB3",
+      "finance": "FINANCE"
+    },
+    "items": {
+      "rabbit": {
+        "title": "DeFi Arbitrage Bot",
+        "description": "Automated arbitrage bot for DEX trading"
+      },
+      "cointips": {
+        "title": "Crypto Donation Platform",
+        "description": "Decentralized donation platform for content creators"
+      },
+      "spinh": {
+        "title": "Structured Products Management",
+        "description": "Enterprise-grade structured products solution"
+      }
+    }
+  },
+  "vision": {
+    "title": "Revolutionizing Finance Through Decentralization",
+    "description": "We envision a financial system that's open, transparent, and accessible to everyone. Through blockchain technology, we're building the infrastructure for a more equitable financial future.",
+    "points": {
+      "access": {
+        "title": "Universal Access",
+        "description": "Breaking down geographical barriers, DeFi enables 1.7B unbanked individuals to access financial services through just a smartphone and internet connection."
+      },
+      "transparency": {
+        "title": "True Transparency",
+        "description": "Unlike traditional banking's opaque operations, DeFi protocols operate on public blockchains where every transaction is verifiable and auditable in real-time."
+      },
+      "efficiency": {
+        "title": "Efficiency Redefined",
+        "description": "Traditional cross-border payments take 3-5 business days and cost up to 7%. DeFi enables instant transfers at a fraction of the cost."
+      },
+      "innovation": {
+        "title": "Financial Innovation",
+        "description": "Smart contracts enable programmable money and automated financial services, from flash loans to yield optimization, that weren't possible before."
+      }
+    },
+    "future": {
+      "title": "Our Role in the Future of Finance",
+      "description": "As blockchain technology matures, we're at the forefront of building secure, scalable DeFi infrastructure. Our solutions bridge the gap between traditional finance and the decentralized future, making advanced financial tools accessible to businesses and individuals alike.",
+      "stats": {
+        "tvl": {
+          "value": "$100B+",
+          "label": "Total Value Locked in DeFi"
+        },
+        "costs": {
+          "value": "15x",
+          "label": "Lower Transaction Costs"
+        },
+        "access": {
+          "value": "24/7",
+          "label": "Market Accessibility"
+        }
+      }
+    }
+  },
   "contact": {
     "title": "Get in Touch",
     "description": "Let's discuss how we can help transform your business",
     "form": {
-      "name": "Your Name",
-      "email": "Email Address",
-      "service": "Select Service",
-      "message": "Your Message",
-      "submit": "Send Message",
-      "sending": "Sending..."
+      "name": {
+        "label": "Your Name",
+        "placeholder": "Enter your name",
+        "error": "Name must be at least 2 characters"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "Enter your email",
+        "error": "Invalid email address"
+      },
+      "service": {
+        "label": "Select Service",
+        "placeholder": "Choose a service",
+        "options": {
+          "smartContracts": "Smart Contracts",
+          "defi": "DeFi Solutions",
+          "consulting": "Consulting",
+          "security": "Security Audit"
+        }
+      },
+      "message": {
+        "label": "Your Message",
+        "placeholder": "Enter your message",
+        "error": "Message must be at least 10 characters"
+      },
+      "submit": {
+        "label": "Send Message",
+        "sending": "Sending..."
+      }
     }
   }
 }

@@ -22,10 +22,10 @@ export default function Navbar() {
   }, []);
 
   const menuItems = [
-    { href: '#services', label: t('nav.services') },
-    { href: '#about', label: t('nav.about') },
-    { href: '#projects', label: t('nav.projects') },
-    { href: '#contact', label: t('nav.contact') },
+    { href: '#services', label: 'nav.services' },
+    { href: '#projects', label: 'nav.projects' },
+    { href: '#vision', label: 'nav.vision' },
+    { href: '#contact', label: 'nav.contact' },
   ];
 
   return (
@@ -48,7 +48,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center space-x-8">
             {menuItems.map((item) => (
               <NavLink key={item.href} href={item.href}>
-                {item.label}
+                { t(item.label) }
               </NavLink>
             ))}
             <LanguageToggle />

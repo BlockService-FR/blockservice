@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { useTranslation } from 'react-i18next';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -24,6 +25,7 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
   const { toast } = useToast();
+  const { t } = useTranslation();
   
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -90,31 +92,31 @@ export default function ContactSection() {
           className="max-w-2xl mx-auto"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0B2447] mb-4">Get in Touch</h2>
-            <p className="text-gray-600">Let's discuss how we can help transform your business</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0B2447] mb-4">{t('contact.title')}</h2>
+            <p className="text-gray-600">{t('contact.description')}</p>
           </div>
 
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <div>
               <Input
-                placeholder="Your Name"
+                placeholder={t('contact.form.name.placeholder')}
                 {...form.register('name')}
                 className="w-full"
               />
               {form.formState.errors.name && (
-                <p className="text-red-500 text-sm mt-1">{form.formState.errors.name.message}</p>
+                <p className="text-red-500 text-sm mt-1">{t('contact.form.name.error')}</p>
               )}
             </div>
 
             <div>
               <Input
                 type="email"
-                placeholder="Email Address"
+                placeholder={t('contact.form.email.placeholder')}
                 {...form.register('email')}
                 className="w-full"
               />
               {form.formState.errors.email && (
-                <p className="text-red-500 text-sm mt-1">{form.formState.errors.email.message}</p>
+                <p className="text-red-500 text-sm mt-1">{t('contact.form.email.error')}</p>
               )}
             </div>
 
@@ -123,25 +125,25 @@ export default function ContactSection() {
                 {...form.register('service')}
                 className="w-full rounded-md border border-input bg-background px-3 py-2"
               >
-                <option value="">Select Service</option>
-                <option value="smart-contracts">Smart Contracts</option>
-                <option value="defi">DeFi Solutions</option>
-                <option value="consulting">Consulting</option>
-                <option value="security">Security Audit</option>
+                <option value="">{t('contact.form.service.placeholder')}</option>
+                <option value="smart-contracts">{t('contact.form.service.options.smartContracts')}</option>
+                <option value="defi">{t('contact.form.service.options.defi')}</option>
+                <option value="consulting">{t('contact.form.service.options.consulting')}</option>
+                <option value="security">{t('contact.form.service.options.security')}</option>
               </select>
               {form.formState.errors.service && (
-                <p className="text-red-500 text-sm mt-1">{form.formState.errors.service.message}</p>
+                <p className="text-red-500 text-sm mt-1">{t('contact.form.service.error')}</p>
               )}
             </div>
 
             <div>
               <Textarea
-                placeholder="Your Message"
+                placeholder={t('contact.form.message.placeholder')}
                 {...form.register('message')}
                 className="w-full min-h-[150px]"
               />
               {form.formState.errors.message && (
-                <p className="text-red-500 text-sm mt-1">{form.formState.errors.message.message}</p>
+                <p className="text-red-500 text-sm mt-1">{t('contact.form.message.error')}</p>
               )}
             </div>
 
@@ -150,7 +152,7 @@ export default function ContactSection() {
               className="w-full bg-[#0B2447] hover:bg-[#19376D]"
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
+              {isSubmitting ? t('contact.form.submit.sending') : t('contact.form.submit.label')}
             </Button>
           </form>
         </motion.div>
