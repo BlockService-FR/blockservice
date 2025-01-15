@@ -36,7 +36,7 @@ export default function ProjectShowcase() {
     : projects.filter(p => p.category.toLowerCase() === filter.toLowerCase());
 
   return (
-    <section id="projects" className="py-20 bg-white">
+    <section id="projects" className="py-20 bg-gray-100">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

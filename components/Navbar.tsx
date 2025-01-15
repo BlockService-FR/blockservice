@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Blocks, Menu, X } from 'lucide-react';
 import LanguageToggle from './LanguageToggle';
+import Link from 'next/link';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,6 +22,15 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // New scroll handler for CTA Button
+  const handleCTAClick = () => {
+    setIsMenuOpen(false);
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const menuItems = [
     { href: '#services', label: 'nav.services' },
     { href: '#projects', label: 'nav.projects' },
@@ -30,9 +40,8 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-[#0B2447]/90 backdrop-blur-sm py-4' : 'bg-transparent py-6'
-      }`}
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#0B2447]/90 backdrop-blur-sm py-4' : 'bg-transparent py-6'
+        }`}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -48,19 +57,36 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center space-x-8">
             {menuItems.map((item) => (
               <NavLink key={item.href} href={item.href}>
-                { t(item.label) }
+                {t(item.label)}
               </NavLink>
             ))}
             <LanguageToggle />
           </div>
 
           <div className="hidden lg:block">
-            <Button 
-              variant="outline" 
-              className="border-[#A5D7E8] text-[#A5D7E8] hover:bg-[#A5D7E8] hover:text-[#0B2447]"
-            >
-              {t('nav.getStarted')}
-            </Button>
+            <Link href="#contact" passHref>
+              <Button
+                variant="outline"
+                className="
+                border-[#1E90FF] 
+                text-[#1E90FF] 
+                hover:bg-[#1E90FF] 
+                hover:text-white 
+                focus:ring-2 
+                focus:ring-[#1E90FF] 
+                font-semibold 
+                py-2 
+                px-6 
+                rounded-md 
+                transition 
+                duration-300 
+                ease-in-out
+              "
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t('nav.cta')}
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -95,18 +121,34 @@ export default function Navbar() {
                     onClick={() => setIsMenuOpen(false)}
                     className="text-gray-200 hover:text-[#A5D7E8] transition-colors duration-300 py-2 px-4 rounded-md hover:bg-[#19376D]/50"
                   >
-                    {item.label}
+                    {t(item.label)}
                   </a>
                 ))}
                 <div className="flex items-center justify-between py-2 px-4">
                   <LanguageToggle />
-                  <Button 
-                    variant="outline" 
-                    className="border-[#A5D7E8] text-[#A5D7E8] hover:bg-[#A5D7E8] hover:text-[#0B2447]"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {t('nav.getStarted')}
-                  </Button>
+                  <Link href="#contact" passHref>
+                    <Button
+                      variant="outline"
+                      className="
+                      border-[#1E90FF] 
+                      text-[#1E90FF] 
+                      hover:bg-[#1E90FF] 
+                      hover:text-white 
+                      focus:ring-2 
+                      focus:ring-[#1E90FF] 
+                      font-semibold 
+                      py-2 
+                      px-6 
+                      rounded-md 
+                      transition 
+                      duration-300 
+                      ease-in-out
+                    "
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {t('nav.cta')}
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -119,7 +161,7 @@ export default function Navbar() {
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <a 
+    <a
       href={href}
       className="text-gray-200 hover:text-[#A5D7E8] transition-colors duration-300"
     >

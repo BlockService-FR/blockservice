@@ -4,13 +4,13 @@
     "vision": "Notre Vision",
     "projects": "Projets",
     "contact": "Contact",
-    "getStarted": "Commencer"
+    "cta": "Nous Contacter"
   },
   "hero": {
     "title": "Construire l'Avenir de la",
     "subtitle": "Finance & du Web3",
     "description": "Solutions expertes en blockchain et fintech pour les entreprises innovantes.",
-    "cta": "Commencer"
+    "cta": "Nous Contacter"
   },
   "services": {
     "title": "Nos Services",
