@@ -111,11 +111,15 @@ export default function ThreeBackground() {
         node.position.add(node.userData.velocity);
 
         // Bounce off boundaries with simplified checks
-        ['x', 'y', 'z'].forEach(axis => {
-          if (Math.abs(node.position[axis]) > 20) {
-            node.userData.velocity[axis] *= -1;
-          }
-        });
+        if (Math.abs(node.position.x as number) > 20) {
+          node.userData.velocity.x *= -1;
+        }
+        if (Math.abs(node.position.y as number) > 20) {
+          node.userData.velocity.y *= -1;
+        }
+        if (Math.abs(node.position.z as number) > 20) {
+          node.userData.velocity.z *= -1;
+        }
       });
 
       // Update connections less frequently

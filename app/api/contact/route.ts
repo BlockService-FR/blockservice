@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { z } from 'zod';
-import { rateLimit } from '@/lib/rate-limit';
 import { sanitizeInput } from '@/lib/sanitize';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
