@@ -24,22 +24,15 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
-            <ul className="space-y-2 text-gray-300">
-              <li>About Us</li>
-              <li>Careers</li>
-              <li>Blog</li>
-              <li>Contact</li>
-            </ul>
+            
           </div>
           
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-gray-300">
               <li>contact@blockservice.dev</li>
-              <li>+1 (555) 123-4567</li>
-              <li>123 Blockchain Street</li>
-              <li>San Francisco, CA 94105</li>
+              <li>+33 6 27 52 89 08</li>
+              <li>France</li>
             </ul>
           </div>
         </div>

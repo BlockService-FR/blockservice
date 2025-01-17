@@ -22,15 +22,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // New scroll handler for CTA Button
-  const handleCTAClick = () => {
-    setIsMenuOpen(false);
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const menuItems = [
     { href: '#services', label: 'nav.services' },
     { href: '#projects', label: 'nav.projects' },
