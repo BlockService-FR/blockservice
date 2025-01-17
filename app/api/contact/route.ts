@@ -52,7 +52,7 @@ export async function POST(request: Request) {
 
     // Send email
     await resend.emails.send({
-      from: 'BlockService <noreply@blockservice.dev>',
+      from: 'BlockService <noreply@blockservice.fr>',
       to: process.env.RECIPIENT_EMAIL!,
       subject: `New Contact Form Submission from ${sanitizedData.name}`,
       html: `
