@@ -15,13 +15,13 @@ const projects = [
   },
   {
     title: 'cointips',
-    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600',
+    image: 'CoinTips.png',
     category: 'Web3',
     tech: ['Angular', 'PostgreSQL', 'NestJS'],
   },
   {
     title: 'spinh',
-    image: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=600',
+    image: 'SPINH.png',
     category: 'Finance',
     tech: ['Angular', 'Oracle', 'JavaEE'],
   },
