@@ -16,11 +16,15 @@ const contactSchema = z.object({
 
 export async function POST(request: Request) {
   try {
+    console.log('Received POST request');
+
     const body = await request.json();
-    
+    console.log('Parsed request body:', body);
+
     // Validate input
     const result = contactSchema.safeParse(body);
     if (!result.success) {
+      console.error('Validation failed:', result.error);
       return NextResponse.json(
         { success: false, error: 'Invalid input data' },
         { status: 400 }
@@ -35,7 +39,10 @@ export async function POST(request: Request) {
     });
 
     const recaptchaData = await recaptchaResponse.json();
+    console.log('reCAPTCHA response:', recaptchaData);
+
     if (!recaptchaData.success) {
+      console.error('reCAPTCHA verification failed');
       return NextResponse.json(
         { success: false, error: 'Invalid reCAPTCHA' },
         { status: 400 }
@@ -49,6 +56,7 @@ export async function POST(request: Request) {
       service: body.service ? sanitizeInput(body.service) : undefined,
       message: sanitizeInput(body.message),
     };
+    console.log('Sanitized data:', sanitizedData);
 
     // Send email
     await resend.emails.send({
@@ -64,6 +72,7 @@ export async function POST(request: Request) {
         <p>${sanitizedData.message.replace(/\n/g, '<br>')}</p>
       `,
     });
+    console.log('Email sent successfully');
 
     return NextResponse.json({
       success: true,

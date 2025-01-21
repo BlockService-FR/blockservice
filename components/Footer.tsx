@@ -30,7 +30,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-gray-300">
-              <li>contact@blockservice.dev</li>
+              <li>mikael.ribas@blockservice.fr</li>
               <li>+33 6 27 52 89 08</li>
               <li>France</li>
             </ul>
