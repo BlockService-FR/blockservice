@@ -11,6 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { useTranslation } from 'react-i18next';
+import i18n from '@/lib/i18n';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -63,8 +64,8 @@ export default function ContactSection() {
 
       if (result.success) {
         toast({
-          title: 'Message sent!',
-          description: "We'll get back to you soon.",
+          title: i18n.t('contact.sent.title'),
+          description: i18n.t('contact.sent.description'),
         });
         form.reset();
       } else {
@@ -72,8 +73,8 @@ export default function ContactSection() {
       }
     } catch (error) {
       toast({
-        title: 'Error',
-        description: error instanceof Error ? error.message : 'Something went wrong. Please try again.',
+        title: i18n.t('contact.error.title'),
+        description: i18n.t('contact.error.description'),
         variant: 'destructive',
       });
     } finally {

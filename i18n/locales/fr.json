@@ -139,6 +139,14 @@
         "label": "Envoyer",
         "sending": "Envoi en cours..."
       }
+    },
+    "sent": {
+      "title":"Message envoyé!",
+      "description": "Nous reviendrons vers vous sous peu."
+    },
+    "error": {
+      "title": "Erreur",
+      "description": "Une erreur s'est produite. Veuillez réessayer."
     }
   }
 }

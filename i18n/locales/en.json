@@ -139,6 +139,14 @@
         "label": "Send Message",
         "sending": "Sending..."
       }
+    },
+    "sent": {
+      "title":"Message sent!",
+      "description": "We'll get back to you soon."
+    },
+    "error": {
+      "title": "Error",
+      "description": "Something went wrong. Please try again."
     }
   }
 }
