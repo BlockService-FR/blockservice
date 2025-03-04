@@ -11,9 +11,12 @@ import Link from 'next/link';
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -28,6 +31,10 @@ export default function Navbar() {
     { href: '#vision', label: 'nav.vision' },
     { href: '#contact', label: 'nav.contact' },
   ];
+
+  if (!isMounted) {
+    return null; // Return null on server-side and first render
+  }
 
   return (
     <motion.nav

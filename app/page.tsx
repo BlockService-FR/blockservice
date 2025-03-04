@@ -1,3 +1,5 @@
+"use client";
+
 import Hero from '@/components/sections/Hero';
 import Services from '@/components/sections/Services';
 import Vision from '@/components/sections/Vision';

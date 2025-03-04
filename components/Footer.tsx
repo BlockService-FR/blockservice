@@ -1,6 +1,21 @@
+'use client';
+
 import { Blocks } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 
 export default function Footer() {
+  const { t } = useTranslation();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null; // Return null on server-side and first render
+  }
+
   return (
     <footer className="bg-[#0B2447] text-white py-12">
       <div className="container mx-auto px-4">
@@ -14,12 +29,12 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('services.title')}</h3>
             <ul className="space-y-2 text-gray-300">
-              <li>Smart Contracts</li>
-              <li>DeFi Solutions</li>
-              <li>Security Audits</li>
-              <li>Consulting</li>
+              <li>{t('services.items.smartContracts.title')}</li>
+              <li>{t('services.items.defi.title')}</li>
+              <li>{t('services.items.security.title')}</li>
+              <li>{t('services.items.consulting.title')}</li>
             </ul>
           </div>
           
@@ -28,7 +43,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('contact.title')}</h3>
             <ul className="space-y-2 text-gray-300">
               <li>mikael.ribas@blockservice.fr</li>
               <li>+33 6 27 52 89 08</li>
